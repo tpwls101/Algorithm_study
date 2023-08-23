@@ -4,6 +4,23 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * <D4_3124_최소스패닝트리>
+ * 간선정보(from, to, weight)를 가중치에 따라 오름차순 정렬하여
+ * 가중치가 낮은 간선부터 트리를 만들어 가중치의 합을 구하면 가중치의 최소 합이 보장된다.
+ * 
+ * 간선정보를 저장할 클래스 Edge를 만들고 from과 to 정점을 합치면서(union) 트리를 만들어나간다.
+ * 사이클이 존재하면 다음 간선을 불러오고 이를 간선의 개수가 V-1개가 될 때까지 반복하며 가중치를 더해준다.
+ * 
+ * 주의 : 정점의 개수는 최대 100,000개이고 가중치의 절대값이 1,000,000을 넘지 않으므로 가중치의 합은 long 타입이 되어야 한다!
+ * 
+ * 메모리 : 117,772 kb
+ * 실행시간 : 1,869 ms
+ * 
+ * @author 유세진
+ *
+ */
+
 public class Solution {
 	
 	// 간선 정보를 저장할 클래스
