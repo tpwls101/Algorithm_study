@@ -7,7 +7,15 @@ import java.util.StringTokenizer;
 /**
  * <BJ_17143_낚시왕>
  * 칸에 상어는 최대 한마리, 두마리 이상 있으면 크기가 가장 큰 상어만 남음
+ * 낚시왕이 잡은 상어 크기의 합 구하기!
  * 
+ * !!! 놓친 부분 !!!
+ * 1. 입력받은 arr 배열에서 상어를 이동시키고 저장하면 for문을 돌면서 이동된 상어까지 다시 이동시키게 된다.
+ * 		이를 해결하기 위해 temp 배열을 만들어 이동시킨 상어의 위치를 저장하고 arr에 다시 저장해주었다.
+ * 2. 1초 동안 낚시왕과 상어 모두 이동을 하게 된다. 낚시왕이 해당 열에서 잡을 상어가 없더라도 상어는 이동을 시켜주어야 한다.
+ * 		즉, 상어를 잡고 이동을 시키는게 아니라 낚시왕이 한 칸씩 움직일 때마다 상어도 이동!
+ * 
+ * 메모리 : 
  * 
  * @author 유세진
  *
@@ -98,35 +106,29 @@ public class Main {
 //					}
 //					System.out.println();
 					
-//					temp = new Shark[R+1][C+1]; // 이동한 상어의 위치를 저장할 배열
-//					
-//					// 3. 상어 이동
-//					moveShark();
-//					arr = temp;
-					
-//					// 상어 확인
-//					System.out.println("이동 후");
-//					for(int i=1; i<=R; i++) {
-//						for(int j=1; j<=C; j++) {
-//							if(arr[i][j] != null) {
-//								System.out.print(1 + " ");
-//							} else {
-//								System.out.print(0 + " ");
-//							}
-//						}
-//						System.out.println();
-//					}
-//					System.out.println();
-					
 					break;
 				}
 			}
 			
 			temp = new Shark[R+1][C+1]; // 이동한 상어의 위치를 저장할 배열
 			
-			// 3. 상어 이동
+			// 3. 상어 이동 (낚시왕이 해당 열에서 잡을 상어가 없더라도 상어는 이동을 시켜주어야 한다!)
 			moveShark();
 			arr = temp;
+			
+//			// 상어 확인
+//			System.out.println("이동 후");
+//			for(int i=1; i<=R; i++) {
+//				for(int j=1; j<=C; j++) {
+//					if(arr[i][j] != null) {
+//						System.out.print(1 + " ");
+//					} else {
+//						System.out.print(0 + " ");
+//					}
+//				}
+//				System.out.println();
+//			}
+//			System.out.println();
 		}
 		
 		System.out.println(answer);
@@ -168,7 +170,6 @@ public class Main {
 								shark.d = 1;
 							}
 							shark.r += flag;
-							//System.out.println(shark.r);
 						}
 					}
 					
@@ -184,7 +185,6 @@ public class Main {
 								shark.d = 4;
 							}
 							shark.c += flag;
-							//System.out.println(shark.c);
 						}
 					}
 					
@@ -202,16 +202,6 @@ public class Main {
 							shark.c += flag;
 						}
 					}
-					
-//					// 이동한 좌표가 비어있으면 그냥 상어 저장
-//					if(temp[shark.r][shark.c] == null) {
-//						temp[shark.r][shark.c] = new Shark(shark.r, shark.c, shark.s, shark.d, shark.z);
-//					} else { // 이동한 좌표에 이미 상어가 있다면 한 칸에 두마리 이상 있을 수 없으니 크기가 큰 상어만 남긴다
-//						if(shark.z > arr[shark.r][shark.c].z) { // 원래 있던 상어보다 이동시킨 상어가 크기가 더 크면
-//							arr[shark.r][shark.c] = new Shark(shark.r, shark.c, shark.s, shark.d, shark.z); // 크기가 더 큰 새로운 상어 저장
-//						}
-//						// 원래 있던 상어가 더 크다면 그냥 그대로 둠
-//					}
 					
 					// 이동한 좌표가 비어있으면 그냥 상어 저장
 					if(temp[shark.r][shark.c] == null) {
@@ -239,11 +229,9 @@ public class Main {
 //					}
 //					System.out.println();
 					
-					
 				}
 			}
 		}
-		
 		
 	}
 
