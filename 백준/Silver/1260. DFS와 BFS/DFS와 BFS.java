@@ -9,8 +9,10 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_1260_DFS와BFS>
- * 처음에는 연결리스트(LinkedList)를 활용하여 인접리스트를 구현했음 -> 정점 번호 정렬 어려움 -> ArrayList안에 ArrayList
- * 정렬을 통해 정점번호가 작은 것부터 탐색하며 번호를 출력하기 때문에 visited 배열을 통한 방문체크가 필요없음!
+ * 처음에는 연결리스트(LinkedList)를 활용하여 인접리스트를 구현했음 -> 정점 번호 정렬 어려움 -> ArrayList안에 ArrayList로 그래프 구현
+ * dfs 호출 후 bfs에서 사용하기 위해 visited 배열 초기화 꼭 해줄 것!
+ * 
+ * 메모리 : 20972kb, 실행시간 : 376ms
  * 
  * @author 유세진
  *
@@ -58,7 +60,7 @@ public class Main {
 		dfs(V);
 		
 		System.out.println();
-		visited = new boolean[N+1];	
+		visited = new boolean[N+1];
 		bfs(V);
 		
 	}
