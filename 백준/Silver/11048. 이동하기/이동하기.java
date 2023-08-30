@@ -3,6 +3,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_11048_이동하기>
+ * 메모이제이션을 활용하여 (r,c)까지 오는데 주운 사탕의 최대 개수를 저장한다.
+ * (r,c)에는 좌, 좌상, 상에서 값이 들어올 수 있으므로 세 곳의 값을 비교하여 최댓값을 구하고
+ * 그 최댓값에 (r,c)의 값을 더해주면 (r,c)까지 오는데 주운 사탕의 최대 개수가 된다.
+ * 
+ * 메모리 : 66984kb, 실행시간 : 560ms
+ * 
+ * @author 유세진
+ *
+ */
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
