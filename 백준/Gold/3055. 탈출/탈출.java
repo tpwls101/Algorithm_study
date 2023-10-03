@@ -11,11 +11,16 @@ import java.util.StringTokenizer;
  * * : 물
  * X : 돌
  * 
+ * 1초 동안 일이 일어난다! -> 큐의 사이즈만큼 실행한다!
+ * 
+ * 주의 : 이미 최소시간이 나와도 hedgehog 큐에 값이 남아있으면 큐가 빌 때까지 실행됨
+ * 예를 들어, 3초일 때가 최소시간인데 큐에 값이 남아있어 계속 while문을 반복하게 될 수도 있으니 Math.min() 필요!
+ * 
  * @author YooSejin
  *
  */
 
-public class Main {
+public class BJ_3055_탈출 {
 	
 	public static int r;
 	public static int c;
