@@ -7,21 +7,15 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_2667_단지번호붙이기>
- * 단지의 개수 카운트
- * 단지에 속하는 집의 수 카운트
- * 
- * !!! 놓친 부분 !!!
- * 1. 단지에서 집의 개수를 카운트 할 때마다 max값을 초기화 시켜줘야 함
- * 2. 최대값 갱신하는 max의 위치
- * 3. dfs 호출할 때 max+1 전달 (homeCnt+1 -> X)
- * 
- * 메모리 : 14492kb, 실행시간 : 144ms
  * 
  * @author 유세진
  *
  */
 
 public class Main {
+	
+	// 단지의 개수 카운트
+	// 단지에 속하는 집의 수 카운트
 	
 	static int N; // 지도의 크기 (5~25)
 	static int[][] map; // NxN 지도
@@ -56,9 +50,8 @@ public class Main {
 		// 지도 탐색
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<N; j++) {
-				// 아직 방문하지 않았고 집이 있다면
 				if(!visited[i][j] && map[i][j] == 1) {
-					max = Integer.MIN_VALUE; // 단지에서 집의 개수를 카운트 할 때마다 max값을 초기화 시켜줘야 함
+					max = Integer.MIN_VALUE;
 					dfs(i, j, 1); // 현재 x,y좌표와 단지 내에 속하는 집의 수 카운트
 					unitCnt++; // 단지 수 증가
 					homeCnts.add(max); // 단지에 속하는 집의 수 저장
@@ -92,10 +85,10 @@ public class Main {
 			
 			// 배열의 범위를 벗어나지 않고
 			if(temp_x >= 0 && temp_x < N && temp_y >= 0 && temp_y < N) {
-				max = Math.max(max, homeCnt); // 단지 내 집의 최대 개수 갱신
+				max = Math.max(max, homeCnt);
 				// 아직 방문하지 않았고 집이 있다면 dfs 호출
 				if(!visited[temp_x][temp_y] && map[temp_x][temp_y] == 1) {
-					dfs(temp_x, temp_y, max+1); // 최대값으로 갱신된 max에 +1 해서 전달
+					dfs(temp_x, temp_y, max+1);
 				}
 			}
 		}
