@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * <SW_14510_나무높이>
+ * <D2_14510_나무높이>
  * 1. 키가 가장 큰 나무의 키 구하기 (maxHeight)
  * 2. 나무의 높이와 maxHeight의 차 구하기
  * 3. 차에서 나누면 키 +2 가능한 날의 수를 구할 수 있고 나머지 연산을 쓰면 키 +1이 필요한 날의 수를 구할 수 있음
