@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_1926_그림>
- * 
+ * 주의사항 : bfs를 시작함과 동시에 그림의 크기는 1이 되므로 size++ 해주기
  * 
  * @author YooSejin
  *
@@ -52,14 +52,6 @@ public class Main {
 				arr[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		
-//		for(int i=0; i<N; i++) {
-//			for(int j=0; j<M; j++) {
-//				System.out.print(arr[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
-		
 		
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<M; j++) {
