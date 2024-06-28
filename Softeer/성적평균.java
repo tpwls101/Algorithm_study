@@ -1,41 +1,51 @@
 import java.io.*;
 import java.util.*;
 
+/** 
+그리디 + 정렬
+*/
+
 public class Main {
 
-    static int N; // 학생 수
-    static int K; // 구간 수
-    static int grade[]; // 학생들의 성적을 저장할 배열
-    static int start; // 구간 시작 지점
-    static int end; // 구간 마지막 지점
-
+    static int W; // 배낭의 무게
+    static int N; // 귀금속의 종류
+    static int arr[][]; // 금속의 무게와 무게당 가격을 저장할 배열
+    static int maxPrice = 0; // 배낭에 담을 수 있는 가장 비싼 가격
+    
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        
+
+        W = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
 
-        grade = new int[N];
+        arr = new int[N][2];
 
-        st = new StringTokenizer(br.readLine());
         for(int i=0; i<N; i++) {
-            grade[i] = Integer.parseInt(st.nextToken());
+            st = new StringTokenizer(br.readLine());
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i=0; i<K; i++) {
-            st = new StringTokenizer(br.readLine());
-            start = Integer.parseInt(st.nextToken());
-            end = Integer.parseInt(st.nextToken());
-            
-            int sum = 0;
-            for(int index=start-1; index<end; index++) {
-                sum += grade[index];
+        // 무게 당 가격을 기준으로 내림차순 정렬
+        Arrays.sort(arr, (o1, o2) -> (o2[1] - o1[1]));
+
+        // 정렬 후 확인
+        // for(int i=0; i<N; i++) {
+        //     System.out.println(arr[i][0] + " " + arr[i][1]);
+        // }
+
+        for(int i=0; i<N; i++) {
+            if(arr[i][0] >= W) {
+                maxPrice += W * arr[i][1];
+                break;
+            } else {
+                maxPrice += arr[i][0] * arr[i][1];
+                W -= arr[i][0];
             }
-            double avg = (double)sum / (end - start + 1);
-            System.out.println(String.format("%.2f", avg));
         }
         
+        System.out.println(maxPrice);
     }
 }
