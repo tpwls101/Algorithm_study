@@ -9,11 +9,16 @@ import java.util.StringTokenizer;
  * 식만 잘 짜면 어렵지 않은 문제
  * 규칙을 찾자
  * 
+ * 누적합으로 풀어야 되는 이유
+ * 이중 for문을 사용하면 N이 1024까지이므로 1024x1024 = 1,000,000 이상이고
+ * M개만큼 범위를 구해야 하는데 M의 범위가 10만까지이므로
+ * 1,000,000 x 10만 -> 시간초과난다!
+ * 
  * @author YooSejin
  *
  */
 
-public class Main {
+public class BJ_11660_구간합구하기5 {
 	
 	static int N; // 표의 크기
 	static int M; // 합을 구해야 하는 횟수
