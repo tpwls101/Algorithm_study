@@ -2,10 +2,16 @@ import java.io.*;
 import java.util.*;
 
 /**
-등수를 어떻게 출력할 것인가?
-
-시간 줄이기 포인트 : sysout 대신 StringBuilder를 사용하니 1초 넘던 테케를 없앨 수 있었다! 다 0.x초로!
-*/
+ * <ST_성적평가_방법1>
+ * 등수를 어떻게 출력할 것인가?
+ * 
+ * 시간 줄이기 포인트 : sysout 대신 StringBuilder를 사용하니 1초 넘던 테케를 없앨 수 있었다! 다 0.x초로!
+ * 
+ * 방법2(정렬)보다 DP를 사용한 것이 훨씬 시간이 단축된다!!
+ * 
+ * @author YooSejin
+ *
+ */
 
 public class Main {
     
