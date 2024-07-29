@@ -3,9 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -41,17 +40,17 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		
-		HashMap<String, Integer> map = new HashMap<>();
-
-		for(int i=0; i<N+M; i++) {
-			String name = br.readLine();
-			map.put(name, map.getOrDefault(name, 0)+1);
+		HashSet<String> set = new HashSet<>();
+		
+		for(int i=0; i<N; i++) {
+			set.add(br.readLine());
 		}
 		
 		List list = new ArrayList<>();
-		for(Map.Entry<String, Integer> entry : map.entrySet()) {
-			if(entry.getValue() == 2) {
-				list.add(entry.getKey());
+		for(int i=0; i<M; i++) {
+			String name = br.readLine();
+			if(set.contains(name)) {
+				list.add(name);
 			}
 		}
 		
