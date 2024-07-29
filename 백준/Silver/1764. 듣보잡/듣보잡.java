@@ -48,7 +48,7 @@ public class Main {
 			map.put(name, map.getOrDefault(name, 0)+1);
 		}
 		
-		List<String> list = new ArrayList<>();
+		List list = new ArrayList<>();
 		for(Map.Entry<String, Integer> entry : map.entrySet()) {
 			if(entry.getValue() == 2) {
 				list.add(entry.getKey());
