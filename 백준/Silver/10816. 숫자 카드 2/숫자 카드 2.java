@@ -5,7 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class Main {
+/**
+ * <BJ_10816_숫자카드2>
+ * HashMap을 사용해서 풀었는데 시간초과가 났다!!
+ * Why?
+ * 처음에는 이분탐색보다 Hash를 사용하는 것이 효율적이므로 당연히 통과할 것이라 생각했는데 당황했다.
+ * 그래서 출력을 sysout 대신 StringBuilder로 바꿔봤더니 통과했다...
+ * sysout이 M만큼 출력되고 M의 최댓값은 50만이기 때문에 시간이 상당히 많이 걸리나보다.
+ * 그냥 시간초과를 염두에 두는 문제는 애초에 StringBuilder를 써버리자...!
+ * 
+ * @author YooSejin
+ *
+ */
+
+public class BJ_10816_숫자카드2 {
 	
 	static int N;
 	static int M;
