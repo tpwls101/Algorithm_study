@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  * <BJ_1018_체스판다시칠하기>
@@ -22,6 +21,7 @@ import java.util.StringTokenizer;
  * @author YooSejin
  *
  */
+
 public class Main {
 	
 	static int N; // 행
