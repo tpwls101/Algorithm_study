@@ -3,7 +3,7 @@ import java.util.*;
 /**
 bfs 돌 동안 y좌표를 set에 저장
 set에 저장된 열에 해당하는 oil[] 배열에 석유 크기 저장
-set은 초기화
+set은 bfs 돌 때마다 초기화
 
 방문배열은 초기화x
 oil[] 배열에 석유 크기 누적해서 저장
@@ -17,7 +17,6 @@ class Solution {
     static int row; // 행
     static int col; // 열
     static boolean visited[][]; // 방문배열
-    static int size = 0; // 석유의 크기
     static int[] oil; // 누적 석유 크기를 저장할 배열
     
     static class Node {
@@ -39,22 +38,16 @@ class Solution {
         oil = new int[col];
             
         for(int i=0; i<col; i++) {
-            // 매 열마다 방문배열 초기화 필요
-            // visited = new boolean[row][col];
-            
-            int sum = 0; // 한 열을 뚫을 때의 석유의 합
             for(int j=0; j<row; j++) {                
                 // 석유가 있고 아직 방문하지 않았다면 크기 탐색
                 if(land[j][i] == 1 && !visited[j][i]) {
-                    // sum += bfs(new Node(j, i), land);
                     bfs(new Node(j, i), land);
                 }
             }
-            // answer = Math.max(answer, sum);
         }
         
         Arrays.sort(oil);
-        return oil[oil.length-1];
+        return oil[oil.length - 1];
     }
     
     static void bfs(Node node, int[][] land) {
@@ -90,10 +83,6 @@ class Solution {
         for(int col : set) {
             oil[col] += count;
         }
-        // for(int i=0; i<oil.length; i++) {
-        //     System.out.print(oil[i] + " ");
-        // }
-        // System.out.println();
-        // return count;
     }
+    
 }
