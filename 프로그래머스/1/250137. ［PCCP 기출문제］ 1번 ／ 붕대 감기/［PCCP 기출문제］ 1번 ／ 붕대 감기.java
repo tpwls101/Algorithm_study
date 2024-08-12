@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+자꾸 테스트 14, 16, 18, 20이 통과가 안됐는데 어이없는 실수!!
+연속 성공 횟수 초기화를 빼먹었다ㅜ
+문제가 길수록 빠뜨린 것이 없는지 잘 확인하자!!
+*/
+
 class Solution {
     public int solution(int[] bandage, int health, int[][] attacks) {
         int answer = health; // 현재 체력
