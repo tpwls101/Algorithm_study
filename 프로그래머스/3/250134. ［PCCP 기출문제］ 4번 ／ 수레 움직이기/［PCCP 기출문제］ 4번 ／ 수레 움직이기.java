@@ -26,15 +26,15 @@ class Solution {
         Node red = null;
         Node blue = null;
         
-        // arr = maze;
-        arr = new int[maze.length][maze[0].length];
+        arr = maze;
+        // arr = new int[maze.length][maze[0].length];
         
         visited = new boolean[maze.length][maze[0].length][2];
         
         // 각 수레의 시작 위치 초기화 및 방문 처리
         for(int i=0; i<maze.length; i++) {
             for(int j=0; j<maze[i].length; j++) {
-                arr[i][j] = maze[i][j];
+                // arr[i][j] = maze[i][j];
                 if(maze[i][j] == 1) {
                     red = new Node(i, j);
                     visited[i][j][0] = true;
