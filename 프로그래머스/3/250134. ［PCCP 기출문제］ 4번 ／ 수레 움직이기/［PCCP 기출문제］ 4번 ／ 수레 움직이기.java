@@ -1,102 +1,137 @@
-import java.util.*;
 class Solution {
-    private static class Point{
-        int x,y;
+    
+    // static int[] dx = { 0, 1, 0, -1 };
+    // static int[] dy = { 1, 0, -1, 0 };
+    static int[] dx = { -1, 1, 0, 0 };
+    static int[] dy = { 0, 0, -1, 1 };
+    
+    static int[][] arr; // maze 배열
+    static boolean visited[][][]; // 방문배열 (z=0은 빨간 수레, z=1은 파란 수레)
+    static boolean redEnd; // 빨간 수레가 도착했는지 여부
+    static boolean blueEnd; // 파란 수레가 도착했는지 여부
+    
+    static final int MAX = 999999;
+    
+    static class Node {
+        int x;
+        int y;
         
-        Point(int x,int y){
+        Node(int x, int y) {
             this.x = x;
             this.y = y;
         }
     }
-    private static final int MAX = 999999;
-    
-    public int[][] map;
-    private boolean redEnd, blueEnd;
-    private int[] dx = {-1,1,0,0};
-    private int[] dy = {0,0,-1,1};
-    private boolean[][][] visited;
     
     public int solution(int[][] maze) {
-        Point cntRed = null;
-        Point cntBlue = null;
-
-        map = new int[maze.length][maze[0].length];
+        Node red = null;
+        Node blue = null;
+        
+        // arr = maze;
+        arr = new int[maze.length][maze[0].length];
+        
         visited = new boolean[maze.length][maze[0].length][2];
         
-        for(int i = 0; i < maze.length; i++){
-            for(int j = 0; j < maze[i].length; j++){
-                map[i][j] = maze[i][j];
-                // 각 수레의 시작위치 초기화
-                if(maze[i][j] == 1) cntRed = new Point(i,j);
-                else if(maze[i][j] == 2) cntBlue = new Point(i,j);
+        // 각 수레의 시작 위치 초기화 및 방문 처리
+        for(int i=0; i<maze.length; i++) {
+            for(int j=0; j<maze[i].length; j++) {
+                arr[i][j] = maze[i][j];
+                if(maze[i][j] == 1) {
+                    red = new Node(i, j);
+                    visited[i][j][0] = true;
+                } else if(maze[i][j] == 2) {
+                    blue = new Node(i, j);
+                    visited[i][j][1] = true;
+                }
             }
         }
-        // 시작 위치 방문 처리 (0은 빨간 수레, 1은 파란 수레)
-        visited[cntRed.x][cntRed.y][0] = true;
-        visited[cntBlue.x][cntBlue.y][1] = true;
-        int answer = backtracking(cntRed,cntBlue,0);
-        return (answer == MAX)? 0 : answer;
-    }
-	
-    // 해당 방향으로 움직임 반환
-    private Point getNext(int x, int y, int dir){
-        int nx = x + dx[dir];
-        int ny = y + dy[dir];
-        return new Point(nx,ny);
+        
+        int answer = backtracking(red, blue, 0);
+        return (answer == MAX) ? 0 : answer;
     }
     
-    // 해당 방향으로 움직이는 것이 가능한지 판단
-    // (현재 빨간 수레 , 다음 빨간 수레, 현재 파란 수레, 다음 파란 수레)
-    private boolean isPossible(Point cntRed, Point red, 
-                               Point cntBlue, Point blue){
-        // 기본 탐색 규칙
-        if(red.x < 0 || red.y < 0 || red.x >= map.length || red.y >= map[0].length
-          || blue.x < 0 || blue.y < 0 || blue.x >= map.length || blue.y >= map[0].length
-          || map[red.x][red.y] == 5 || map[blue.x][blue.y] == 5) return false;
+    
+    static Node getNextNode(Node node, int dir) {
+        int nx = node.x + dx[dir];
+        int ny = node.y + dy[dir];
         
-        // 두 수레 스위치 체크
-        if((cntRed.x == blue.x && cntRed.y == blue.y)
-          && (cntBlue.x == red.x && cntBlue.y == red.y)) return false;
+        return new Node(nx, ny);
+    }
+    
+    
+    static boolean isPossible(Node red, Node nRed, Node blue, Node nBlue) {
+        // 두 수레 중 하나라도 맵의 범위를 벗어나면 false 리턴
+        if(nRed.x < 0 || nRed.x >= arr.length || nRed.y < 0 || nRed.y >= arr[0].length || nBlue.x < 0 || nBlue.x >= arr.length || nBlue.y < 0 || nBlue.y >= arr[0].length) {
+            return false;
+        }
         
-        // 도착지점에 도착하지도 않고 중복방문이라면 false
-        if((!redEnd && visited[red.x][red.y][0])
-           || (!blueEnd && visited[blue.x][blue.y][1])) return false;
+        // 두 수레 중 하나라도 벽을 만나는 경우
+        if(arr[nRed.x][nRed.y] == 5 || arr[nBlue.x][nBlue.y] == 5) {
+            return false;
+        }
         
-        // 두 수레가 동일한 지점에 위치시 
-        if(red.x == blue.x && red.y == blue.y) return false;
+        // 아직 수레에 도착하지 않았는데 이미 방문한 위치라면 false 리턴
+        if((!redEnd && visited[nRed.x][nRed.y][0]) || (!blueEnd && visited[nBlue.x][nBlue.y][1])) {
+            return false;
+        }
+        
+        // 두 수레가 동시에 같은 위치인 경우 false 리턴
+        if(nRed.x == nBlue.x && nRed.y == nBlue.y) {
+            return false;
+        }
+        
+        // 두 수레의 위치가 스위치 됐을 경우 false 리턴
+        if((nRed.x == blue.x && nRed.y == blue.y) && (nBlue.x == red.x && nBlue.y == red.y)) {
+             return false;
+        }
+        
         return true;
     }
     
-    // 백트래킹
-    private int backtracking(Point red, Point blue, int result){
-    	// 두 수레가 모두 도착 시 result 반환
-        if(redEnd && blueEnd) return result;
-        int answer = MAX;
+    
+    // 퍼즐을 푸는데 필요한 턴의 최솟값을 구하는 백트래킹 함수
+    static public int backtracking(Node red, Node blue, int count) {
         
-        // 2중 for문으로 16가지 경우의 수
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-            	// 도착지점에 도착한 경우엔 움직이지 않음
-                Point nRed = (!redEnd) ? getNext(red.x,red.y,i) : red;
-                Point nBlue = (!blueEnd) ? getNext(blue.x,blue.y,j) : blue;
+        // 빨간 수레와 파란 수레가 모두 도착지점에 도착하면
+        if(redEnd && blueEnd) {
+            return count;
+        }
+        
+        int result = MAX;
+        
+        // 이중 for문으로 상하좌우x상하좌우 -> 총 16가지 경우의 수 탐색
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                // 이미 도착한 수레는 다음 위치가 원래 위치
+                Node nRed = (!redEnd) ? getNextNode(red, i) : red;
+                Node nBlue = (!blueEnd) ? getNextNode(blue, j) : blue;
                 
-                // 불가능한 경우 conitnue
-                if(!isPossible(red,nRed,blue,nBlue)) continue;
+                // 다음 좌표가 이동 가능한 위치인지 확인하고 아니면 다음 좌표 탐색
+                if(!isPossible(red, nRed, blue, nBlue)) {
+                    continue;
+                }
+                
                 visited[nRed.x][nRed.y][0] = true;
                 visited[nBlue.x][nBlue.y][1] = true;
-                if(map[nRed.x][nRed.y] == 3) redEnd = true;
-                if(map[nBlue.x][nBlue.y] == 4) blueEnd = true;
                 
-                // 가장 적게 걸리는 턴 수
-                answer = Math.min(answer,backtracking(nRed,nBlue,result+1));
+                // 수레가 도착했으면 true로 변경
+                if(arr[nRed.x][nRed.y] == 3) redEnd = true;
+                if(arr[nBlue.x][nBlue.y] == 4) blueEnd = true;
                 
-                // 방문 기록 및 도착 기록 초기화
+                result = Math.min(result, backtracking(nRed, nBlue, count+1));
+                
+                // 도착여부 및 방문기록 - 다시 false 처리
                 redEnd = false;
                 blueEnd = false;
+                // if(arr[nRed.x][nRed.y] != 3) redEnd = false;
+                // if(arr[nBlue.x][nBlue.y] != 4) blueEnd = false;
                 visited[nRed.x][nRed.y][0] = false;
                 visited[nBlue.x][nBlue.y][1] = false;
             }
         }
-        return answer;
+        return result;
     }
+    
+    
+    
+    
 }
