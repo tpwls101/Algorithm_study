@@ -1,3 +1,7 @@
+/**
+<기출문제2 1번>
+*/
+
 class Solution {
     
     static int length; // 비디오 전체 길이
