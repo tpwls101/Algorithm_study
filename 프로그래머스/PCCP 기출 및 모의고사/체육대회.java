@@ -19,7 +19,7 @@ class Solution {
     }
 
     static void perm(int cnt) {
-        // 하나의 조합이 완성되면 합 계산
+        // 하나의 순열이 완성되면 합 계산
         if(cnt == index.length) {
             int sum = 0;
             
