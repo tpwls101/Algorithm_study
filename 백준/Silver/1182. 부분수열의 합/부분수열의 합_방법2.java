@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
  * @author YooSejin
  *
  */
+
 public class Main {
 
 	static int N; // 정수의 개수
