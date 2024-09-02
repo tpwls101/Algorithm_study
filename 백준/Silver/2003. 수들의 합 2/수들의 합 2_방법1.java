@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
  * 누적합
  * N의 범위가 10,000까지이므로 이중 for문 돌려도 괜찮다!
  * 
+ * 시간복잡도 : O(N^2)
+ * 
  * @author YooSejin
  *
  */
