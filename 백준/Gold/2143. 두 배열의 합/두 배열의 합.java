@@ -89,7 +89,7 @@ public class Main {
 		long count = 0;
 		
 		while(pointerA < listA.size() && pointerB < listB.size()) {
-			long sum = listA.get(pointerA) + listB.get(pointerB);
+			int sum = listA.get(pointerA) + listB.get(pointerB);
 			
 			if(sum > T) {
 				pointerB++;
