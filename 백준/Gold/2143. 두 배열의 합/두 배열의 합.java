@@ -26,7 +26,8 @@ import java.util.StringTokenizer;
  * 
  * 주의사항!!
  * 부배열의 원소의 합은 최대 10억 -> list는 Integer 타입 가능
- * listA와 listB의 합은 최대 20억
+ * listA와 listB의 합은 최대 20억 -> Integer 타입 가능
+ * Acnt, Bcnt, count는 long 타입!!!
  * 
  * @author YooSejin
  *
@@ -89,6 +90,7 @@ public class Main {
 		long count = 0;
 		
 		while(pointerA < listA.size() && pointerB < listB.size()) {
+			// int 타입 가능 (최대 20억)
 			int sum = listA.get(pointerA) + listB.get(pointerB);
 			
 			if(sum > T) {
@@ -108,8 +110,8 @@ public class Main {
 				int a = listA.get(pointerA);
 				int b = listB.get(pointerB);
 				
-				long Acnt = 0; // listA에서 연속된 수의 수
-				long Bcnt = 0; // listB에서 연속된 수의 수
+				long Acnt = 0; // listA에서 연속된 수의 수 (long 타입 필수)
+				long Bcnt = 0; // listB에서 연속된 수의 수 (long 타입 필수)
 				
 				while(pointerA < listA.size() && listA.get(pointerA) == a) {
 					Acnt++;
@@ -121,7 +123,7 @@ public class Main {
 					pointerB++;
 				}
 				
-				count += Acnt * Bcnt;
+				count += Acnt * Bcnt; // 최대 50만*50만이므로 long 타입
 			}
 		}
 		
