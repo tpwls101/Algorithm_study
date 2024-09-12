@@ -9,14 +9,14 @@ class Solution {
         
         int count = 0;
         while(queue.size() > 1) {
-            int first = queue.remove();
+            int first = queue.poll();
             if(first >= K) break;
-            int second = queue.remove();
+            int second = queue.poll();
             queue.add(first + second * 2);
             count++;
         }
         
-        if(queue.poll() < K) return -1;
+        if(queue.peek() < K) return -1;
         
         return count;
     }
