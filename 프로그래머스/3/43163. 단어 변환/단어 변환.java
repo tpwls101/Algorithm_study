@@ -2,7 +2,6 @@
 처음 실수!
 begin을 전역변수로 사용해서 단어 변환이 가능하면 begin = words[i]; 로 바꿔줬는데
 begin을 바꿔버리면 이후에 target과 비교가 불가능하다.
-
 */
 
 class Solution {
@@ -11,8 +10,7 @@ class Solution {
     static String target;
     static String[] words;
     static boolean[] visited;
-    // static int count = Integer.MAX_VALUE; // 변환 횟수
-    static int count = 0;
+    static int count = Integer.MAX_VALUE; // 변환 횟수
     
     public int solution(String begin, String target, String[] words) {
         this.begin = begin;
@@ -21,19 +19,14 @@ class Solution {
         
         visited = new boolean[words.length];
         
-        // if(!Arrays.asList(words).contains(target)) {
-        //     return 0;
-        // }
-        
         dfs(begin, 0); // count 전달. 아직 0번 바뀜.
         
-        return count;
+        return (count == Integer.MAX_VALUE) ? 0 : count;
     }
     
     static public void dfs(String currentWord, int cnt) {
         if(currentWord.equals(target)) {
-            //count = Math.min(cnt, count);
-            count = cnt;
+            count = Math.min(cnt, count);
             return;
         }
         
