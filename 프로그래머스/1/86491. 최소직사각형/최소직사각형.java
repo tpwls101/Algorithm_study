@@ -8,14 +8,23 @@ class Solution {
     public int solution(int[][] sizes) {
         
         // <방법1>
+        // for(int[] size : sizes) {
+        //     Arrays.sort(size);
+        // }
+        // int maxW = 0; // 작은 값들끼리 비교해서 가장 큰 값
+        // int maxH = 0; // 큰 값들끼리 비교해서 가장 큰 값
+        // for(int[] size : sizes) {
+        //     maxW = Math.max(maxW, size[0]);
+        //     maxH = Math.max(maxH, size[1]);
+        // }
+        // return maxW * maxH;
+        
+        // <방법2>
+        int maxW = 0;
+        int maxH = 0;
         for(int[] size : sizes) {
-            Arrays.sort(size);
-        }
-        int maxW = 0; // 작은 값들끼리 비교해서 가장 큰 값
-        int maxH = 0; // 큰 값들끼리 비교해서 가장 큰 값
-        for(int[] size : sizes) {
-            maxW = Math.max(maxW, size[0]);
-            maxH = Math.max(maxH, size[1]);
+            maxW = Math.max(maxW, Math.min(size[0], size[1]));
+            maxH = Math.max(maxH, Math.max(size[0], size[1]));
         }
         return maxW * maxH;
     }
