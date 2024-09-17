@@ -1,23 +1,22 @@
+import java.util.*;
+
+/**
+큰 것끼리 비교하고 작은 것끼리 비교하는 것이 포인트!!
+*/
+
 class Solution {
     public int solution(int[][] sizes) {
-        int answer = 0;
-        int max_x =0, max_y =0;
-        for(int i = 0 ; i < sizes.length ; i++){
-            int x = 0 ;
-            int y = 0 ;
-            if(sizes[i][0] > sizes[i][1] ){
-                x = sizes[i][0] ;
-                y = sizes[i][1] ;
-            }else{
-                x = sizes[i][1] ;
-                y = sizes[i][0] ;
-                
-            }
-            
-            max_x = Math.max(max_x , x);
-            max_y = Math.max(max_y , y);
-        }
         
-        return max_x * max_y;
+        // <방법1>
+        for(int[] size : sizes) {
+            Arrays.sort(size);
+        }
+        int maxW = 0; // 작은 값들끼리 비교해서 가장 큰 값
+        int maxH = 0; // 큰 값들끼리 비교해서 가장 큰 값
+        for(int[] size : sizes) {
+            maxW = Math.max(maxW, size[0]);
+            maxH = Math.max(maxH, size[1]);
+        }
+        return maxW * maxH;
     }
 }
