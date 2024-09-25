@@ -1,5 +1,14 @@
 import java.util.*;
 
+/**
+간과한 포인트!!
+소수를 판별하는 메서드에서 1 이하는 false를 리턴
+짝수인지 확인해서 짝수이면 false를 리턴했다
+하지만 2는 짝수이지만 소수이다!!
+따라서 if(num < 2), if(num == 2), if(num % 2 == 0)인 경우를 다 고려해야 한다.
+그게 아니라면 그냥 if(num < 2)만 고려하고 for문으로 2부터 돌려서 처리해도 됨 (하지만 시간이 더 걸리겠죠?)
+*/
+
 class Solution {
     
     static String numbers;
@@ -18,7 +27,6 @@ class Solution {
             if(isPrime(num)) {
                 count++;
             }
-            //isPrime(num);
         }
         
         return count;
@@ -52,17 +60,5 @@ class Solution {
         }
         return true;
     }
-    
-//     static public void isPrime(int num) {
-//         if(num < 2) return; // 1이하는 소수가 아님
-        
-//         if(num % 2 == 0) return; // 짝수도 소수가 아님
-        
-//         for(int i=2; i<num; i++) {
-//             if(num % i == 0) { // 나눠지는 수가 있으면 소수가 아님
-//                 return;
-//             }
-//         }
-//         count++;
-//     }
+
 }
