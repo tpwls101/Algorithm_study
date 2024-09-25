@@ -15,6 +15,9 @@ class Solution {
         dfs("", 0);
         
         for(int num : set) {
+            // if(isPrime(num)) {
+            //     count++;
+            // }
             isPrime(num);
         }
         
@@ -37,14 +40,27 @@ class Solution {
     }
     
     // 소수인지 판별하는 메서드
+//     static public boolean isPrime(int num) {
+//         if(num < 2) return false; // 1이하는 소수가 아님
+//         if(num % 2 == 0) return false; // 짝수도 소수가 아님
+        
+//         for(int i=3; i<=Math.sqrt(num); i++) {
+//             if(num % i == 0) { // 나눠지는 수가 있으면 소수가 아님
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+    
     static public void isPrime(int num) {
-        if(num < 2) return;
+        if(num < 2) return; // 1이하는 소수가 아님
+        //if(num % 2 == 0) return; // 짝수도 소수가 아님
         
         for(int i=2; i<num; i++) {
             if(num % i == 0) { // 나눠지는 수가 있으면 소수가 아님
                 return;
             }
         }
-        count++; // 나눠지는 수가 없으면 소수이므로 카운트
+        count++;
     }
 }
