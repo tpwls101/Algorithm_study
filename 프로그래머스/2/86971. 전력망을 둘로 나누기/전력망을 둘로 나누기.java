@@ -1,16 +1,19 @@
 import java.util.*;
 
 /**
-1~n개의 정점까지 for문을 돌린다.
-각 정점에서 연결된 줄을 하나씩 끊어본다.
-단, 이미 끊어본 것은 패스하고 안끊어본 것만!
-모든 경우의 수 탐색!!
+전선을 끊는 모든 경우의 수를 탐색!!
+
+wires를 for문 돌려서 하나씩 전선을 끊어본다. (전선 연결 상태를 저장하는 arr 배열값을 0으로 바꾼다.)
+전선을 끊은 후 각 전력망의 송전탑 개수를 구한다.
+하나만 구하면 나머지는 자동으로 n-cnt개
+절대값의 최소값을 구한다.
+다음 전선을 끊어보기 위해 원래 끊은 전선은 원상복구 시킨다. (다시 0->1로 변경)
 */
 
 class Solution {
     
     static int n; // 송전탑의 개수
-    static int[][] arr;
+    static int[][] arr; // 전선 연결 상태를 저장할 배열
     static boolean[] visited;
     static int answer = Integer.MAX_VALUE;
     
