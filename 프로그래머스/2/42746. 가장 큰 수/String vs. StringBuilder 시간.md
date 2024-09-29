@@ -3,5 +3,3 @@
 
 ### StringBuilder 사용했을 때
 ![image](https://github.com/user-attachments/assets/163ca62d-7cdd-4e4e-8e07-2e80b6d6c9b4)
-
-![image](https://github.com/user-attachments/assets/3b4b404e-6542-4f1d-af71-45214396795b)
