@@ -9,10 +9,6 @@ class Solution {
         for(int i=0; i<citations.length; i++) {
             int h = citations.length - i; // citations[i]번 이상 인용된 횟수
             
-            // if(h >= citations[i]) {
-            //     answer = Math.max(answer, citations[i]);
-            // }
-            
             if(citations[i] >= h) {
                 answer = h;
                 break;
