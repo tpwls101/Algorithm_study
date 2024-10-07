@@ -1,16 +1,17 @@
 import java.util.*;
 
+/**
+내 옷을 도난당한 경우를 먼저 해결해야 함
+lost for문 돌리면서 도난당했지만 여벌옷이 있으면 해결
+-> 이런식으로 하면 이미 앞에서 내 옷을 빌려갔을 수도 있다.
+*/
+
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
         int answer = n - lost.length;
         
         Arrays.sort(lost);
         Arrays.sort(reserve);
-        
-        // List<Integer> list = new ArrayList<>();
-        // for(int i=0; i<reserve.length; i++) {
-        //     list.add(reserve[i]);
-        // }
         
         // 내 옷을 도난당한 경우 먼저 해결해야 함
         for(int i=0; i<lost.length; i++) {
