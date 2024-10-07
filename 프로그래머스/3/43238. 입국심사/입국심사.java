@@ -5,6 +5,8 @@ import java.util.*;
 따라서 심사를 받는데 걸리는 시간의 범위를 구한다. (0 ~ 가장 오래 걸린 심사 시간)
 
 타입 주의!!
+특히 long right = times[times.length - 1] * (long)n;
+n을 long 타입으로 바꿔줘야 한다.
 
 n명을 심사하면 되는데 n==sum이 안될 수도 있다!
 따라서 sum >= n 인 경우에 계속해서 심사 시간의 최솟값을 찾아준다.
