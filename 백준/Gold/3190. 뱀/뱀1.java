@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * <BJ_3190_뱀>
+ * <BJ_3190_뱀> - 처음 풀었을 때!
  * 
  *  방향	 | →  ↓  ←  ↑  
  * --------------------
