@@ -2,6 +2,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+예외 사례를 찾아내는 것은 너무 어렵다ㅜㅜ
+*/
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
