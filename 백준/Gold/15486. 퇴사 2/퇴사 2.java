@@ -7,12 +7,13 @@ import java.util.StringTokenizer;
  * <BJ_15486_퇴사2>
  * 상담이 끝난 후 돈을 받는다!
  * 1일차, 2일차, ... , N일차 차례대로 상담을 한다고 가정했을 때 Ti일 후 수입이 생긴다.
- * 따라서 dp[N+Ti] = Math.max(dp[N+Ti], dp[N] + Pi)
+ * 따라서 dp[N+Ti] = Math.max(dp[N+Ti], max + Pi)
  * -> dp 배열에 수입 저장하고 최대로 계속 갱신하기!
  * 
  * 단, 주의할 점 !
  * 마지막 날에도 일을 할 수 있으니(T가 1인 경우)
  * dp[N+1]까지 만들어야 한다.
+ * 1 ~ N+1일 사용할 것이므로 0포함 -> N+2
  * 
  * @author YooSejin
  *
