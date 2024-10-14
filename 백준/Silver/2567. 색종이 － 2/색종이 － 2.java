@@ -3,6 +3,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_2567_색종이2>
+ * 둘레를 구하는 방법은?
+ * 색종이에 해당되는 부분을 칠하고
+ * 이중for문 돌려서 색종이 부분이면 상하좌우로 칸 탐색
+ * 바깥쪽 변만 카운트
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int[] dx = { 0, 1, 0, -1 };
