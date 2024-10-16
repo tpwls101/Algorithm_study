@@ -21,9 +21,6 @@ public class Main {
 	static int[][] arr;
 	static int count = 0; // 로봇 청소기가 청소한 칸의 개수
 	
-	// 우상좌하
-//	static int[] dx = { 0, -1, 0, 1 };
-//	static int[] dy = { 1, 0, -1, 0 };
 	// 상우하좌
 	static int[] dx = { -1, 0, 1, 0 };
 	static int[] dy = { 0, 1, 0, -1 };
