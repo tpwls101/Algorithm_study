@@ -1,0 +1,9 @@
+-- 코드를 작성해주세요
+-- 총 누계 거리를 기준으로 내림차순 정렬
+-- 이 때, TOTAL_DISTANCE를 사용하면 'km'를 붙였기 때문에 정렬이 제대로 안된다고 함
+-- 따라서 숫자만 뽑아서 사용
+
+SELECT ROUTE, CONCAT(ROUND(SUM(D_BETWEEN_DIST), 1), 'km') AS TOTAL_DISTANCE, CONCAT(ROUND(AVG(D_BETWEEN_DIST), 2), 'km') AS AVERAGE_DISTANCE
+FROM SUBWAY_DISTANCE
+GROUP BY ROUTE
+ORDER BY ROUND(SUM(D_BETWEEN_DIST), 1) DESC
