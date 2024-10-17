@@ -17,8 +17,6 @@ class Solution {
     }
     
     public int solution(int n, int[][] edge) {
-        int answer = 0;
-        
         visited = new boolean[n+1];
         
         Queue<Node> queue = new ArrayDeque<>();
