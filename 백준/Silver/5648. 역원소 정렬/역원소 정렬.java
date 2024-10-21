@@ -2,6 +2,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * <BJ_5648_역원소정렬>
+ * long 타입 주의!!
+ * 아니면 런타임에러(InputMismatch)
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
