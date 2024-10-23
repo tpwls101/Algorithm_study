@@ -81,7 +81,7 @@ public class Main {
 			if(visited[i]) continue;
 			selected[cnt] = arr[i];
 			visited[i] = true;
-			comb(i+1, cnt+1);
+			comb(i+1, cnt+1); // i+1인데 start+1 써서 시간 잡아먹음 아놔;;
 			visited[i] = false;
 		}
 	}
