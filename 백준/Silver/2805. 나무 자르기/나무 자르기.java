@@ -9,6 +9,10 @@ import java.util.StringTokenizer;
  * 이분탐색 사용!!!
  * sum은 long 타입 주의
  * 
+ * 1. 처음에 sum>M, sum<M, sum=M 구분해서 sum=M인 경우 mid 출력하면 나무 길이의 합이 꼭 M이 안되는 경우도 있어서 안된다.
+ * 2. sum>=M, sum<M 구분해서 mid 를 출력하면 최댓값을 구하려고 이상한 mid 값이 출력된다.
+ * 3. 따라서 sum>=M, sum<M로 구분하고 max값을 출력해줘야 한다. (이 부분이 알아내기 어려웠다.. 처음엔 mid-1도 출력해봤는데 이건 안된다 ㅜㅜ)
+ * 
  * @author YooSejin
  *
  */
