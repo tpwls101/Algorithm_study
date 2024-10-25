@@ -91,7 +91,7 @@ public class Main {
 			
 			// 다음 좌표가 아무것도 없는 곳이라면 몸 길이 그대로 유지
 			if(board[nx][ny] == 0) {
-				Node tailPos = queue.poll(); // 큐에서 뱀의 꼬리 좌표 뺴고
+				Node tailPos = queue.poll(); // 큐에서 뱀의 꼬리 좌표 빼고
 				board[tailPos.x][tailPos.y] = 0; // 꼬리 부분 0으로 바꿈
 			}
 			
