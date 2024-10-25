@@ -15,6 +15,9 @@ import java.util.StringTokenizer;
  * 주사위를 각각 동서남북 방향으로 굴릴 때 어떻게 변하는지를 직접 구현해주고
  * 굴리기만 하면 된다.
  * 
+ * 문제보고 쫄지 말기
+ * 주사위 전개도를 직접 그려보면 이해하기 쉽다
+ * 
  * @author YooSejin
  *
  */
