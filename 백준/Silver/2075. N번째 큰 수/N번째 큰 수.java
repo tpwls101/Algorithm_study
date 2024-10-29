@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_2075_N번째큰수>
- * list에 N*N개의 수를 담아 정렬한 후 N번째 큰 수를 구하는 방법
+ * list에 N*N개의 수를 담아 정렬한 후 N번째 큰 수를 구하는 방법 (1976ms)
  * 
  * @author YooSejin
  *
