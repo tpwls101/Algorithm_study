@@ -11,7 +11,9 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_17140_이차원배열과연산>
- * 
+ * 행과 열 정렬할 때 i,j 헷갈리지 않게 조심할 것!
+ * 나는 가장 길이가 큰 행/열의 크기를 구해 매번 arr 크기를 새로 할당해줬는데
+ * 처음부터 arr[100][100]으로 선언하고 시작해도 된다!
  * 
  * @author YooSejin
  *
@@ -46,14 +48,15 @@ public class Main {
 		}
 		
 		while(true) {
+			// 100초가 되었을 때에도 arr[r][c]가 k와 값이 같은지 비교해야 한다! 따라서 if(answer >= 100)보다 먼저!
 			// 예제6의 경우 1번 R연산을 하고 나면 arr[3][2] 크기가 되어 arr[2][2]의 값이 k와 같은지 확인할 수 없다 (ArrayIndexOutOfBoundsException)
 			if(r < arr.length && c < arr[0].length) {
-				if(arr[r][c] == k) {
+				if(arr[r][c] == k) { // 만약 100초가 지나서 값이 k와 같아지면 while문 빠져나와 100초 출력
 					break;
 				}
 			}
 			
-			if(answer >= 100) {
+			if(answer >= 100) { // 100초가 지나도 k가 되지 않으면 -1 출력
 				answer = -1;
 				break;
 			}
