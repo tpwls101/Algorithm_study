@@ -1,11 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
+/**
+ * <BJ_12891_DNA비밀번호>
+ * 처음에 list에 비밀번호를 저장하고
+ * 맨 첫번째 문자를 지우고 -> remove(0)
+ * 새로운 문자를 추가하였는데  -> list.add()
+ * 시간초과가 났다.
+ * 100만번 돌아가는 for문 안에서 list.add()를 해주는데
+ * list.add()의 시간복잡도는 O(N)이므로
+ * 100만 x 100만이 최대가 되어 시간초과가 나는 것 같다.
+ * 
+ * list에 굳이 비밀번호 문자를 저장하지 않아도 되는 문제여서
+ * list에 삭제하고 추가하는 작업을 지우니 시간초과 없이 통과했다.
+ * 
+ * @author YooSejin
+ *
+ */
+
+public class BJ_12891_DNA비밀번호 {
 	
 	static int S; // DNA 문자열의 길이
 	static int P; // 비밀번호로 사용할 부분 문자열의 길이
