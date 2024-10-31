@@ -18,6 +18,10 @@ import java.util.StringTokenizer;
  * 분열될 파이어볼만 리스트에서 제거하고 (분열되지 않고 한칸에 하나만 있는 파이어볼은 리스트에 그대로 남아있음)
  * 분열시킨 후 다시 리스트에 저장
  * 
+ * 놓친 부분
+ * spread() 메서드 내 arr[i][j].clear(); 의 위치
+ * 분열된 파이어볼의 질량이 0인 경우 continue 되므로 그 전에 초기화를 시켜야 한다!!!
+ * 
  * @author YooSejin
  *
  */
@@ -130,15 +134,14 @@ public class Main {
 						list.remove(fireball); // 분열하는 파이어볼은 리스트에서 제거하고 분열된 파이어볼을 다시 추가해야 함
 					}
 					
-					arr[i][j].clear(); // 다음을 위해 초기화
+					arr[i][j].clear(); // 다음을 위해 초기화 (주의사항 : 분열된 파이어볼의 질량이 0인 경우 continue 되므로 그 전에 초기화를 시켜야 한다!!!)
 					
 					int nm = m_sum / 5;
 					if(nm == 0) continue; // 질량이 0인 파이어볼은 소멸 (따라서 분열된 파이어볼의 질량이 0이면 만들 필요가 없음)
 					int ns = s_sum / size;
 					
 					// 방향이 모두 짝수거나 홀수면 -> 방향은 0 2 4 6
-//					if(even == 0 || odd == 0) {
-					if(even == size || odd == size) {
+					if(even == 0 || odd == 0) {
 						for(int k=0; k<4; k++) {
 							list.add(new Fireball(i, j, nm, ns, k*2));
 						}
