@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * <BJ_2559_수열> - 누적합 사용 방법
+ * <BJ_2559_수열> - 슬라이딩 윈도우 사용 방법
  * 단순 for문 돌려서 합을 구하고 max값을 찾으면 시간초과 나는 문제
  * N의 범위는 10만까지
  * 5만개의 합을 5만번 구한다 생각하면 -> 5만 x 5만 = 25억 (시간초과)
