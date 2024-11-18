@@ -3,7 +3,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.StringTokenizer;
+
+/**
+ * <BJ_1283_단축키지정>
+ * 왜 이건 되고 처음 풀이는 안되는건지??!?
+ * 
+ * @author YooSejin
+ *
+ */
 
 public class Main {
 	
@@ -15,8 +22,6 @@ public class Main {
 		N = Integer.parseInt(br.readLine());
 		
 		Set<String> set = new HashSet<>();
-		
-		StringBuilder sb = new StringBuilder();
 		
 		for(int i=0; i<N; i++) {
 			String[] sArr = br.readLine().split(" ");
