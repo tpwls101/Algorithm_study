@@ -16,6 +16,8 @@ import java.util.StringTokenizer;
  * 한가지 경우가 만들어지면 사각지대의 최소 크기 구하고 copy 배열을 초기화하면 안됨
  * 그러면 마지막 cctv의 다음 방면을 탐색하는데 이전의 cctv가 감시한 것이 초기화되기 때문
  * 
+ * 처음에는 각 cctv마다 for문 돌려서 방향 정했는데 3차원 배열 mode를 미리 만들어두면 더 코드가 더 간결해진다!
+ * 
  * @author YooSejin
  *
  */
@@ -82,14 +84,6 @@ public class Main {
 	
 	static void dfs(int cnt, int[][] arr) {
 		if(cnt == list.size()) {
-//			System.out.println("cctv 감시 구역 확인");
-//			for(int i=0; i<N; i++) {
-//				for(int j=0; j<M; j++) {
-//					System.out.print(arr[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
-			
 			// 사각지대 크기 구하기
 			int count = 0;
 			for(int i=0; i<N; i++) {
@@ -99,17 +93,7 @@ public class Main {
 					}
 				}
 			}
-//			System.out.println("count = " + count);
 			answer = Math.min(answer, count);
-			
-//			System.out.println("초기화 됐는지 확인");
-//			for(int i=0; i<N; i++) {
-//				for(int j=0; j<M; j++) {
-//					System.out.print(arr[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
-			
 			return;
 		}
 		
@@ -152,14 +136,6 @@ public class Main {
 				}
 			}
 		}
-//		
-//		System.out.println("확인");
-//		for(int i=0; i<N; i++) {
-//			for(int j=0; j<M; j++) {
-//				System.out.print(arr[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
 	}
 
 }
