@@ -4,6 +4,15 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_17298_오큰수>
+ * 최대 100개를 출력해야 하니 StringBuilder 사용할 것
+ * StringBuilder 사용안하면 시간초과남
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N; // 수열의 크기(100만까지)
