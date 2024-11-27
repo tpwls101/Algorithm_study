@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_17298_오큰수>
- * 최대 100개를 출력해야 하니 StringBuilder 사용할 것
+ * 최대 100만개를 출력해야 하니 StringBuilder 사용할 것
  * StringBuilder 사용안하면 시간초과남
  * 
  * @author YooSejin
