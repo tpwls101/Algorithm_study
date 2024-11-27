@@ -44,6 +44,7 @@ public class Main {
 			
 			// 스택에 있는 빌딩의 높이보다 더 높은 빌딩 차례가 되면 스택에서 제거한다
 			while(!stack.isEmpty()) {
+				// i번째 빌딩보다 낮거나 같은 애들은 스택에서 빼버린다
 				if(stack.peek() <= height) {
 					stack.pop();
 				} else { // 더 낮은 건물이면 스택 유지, 스택에 있는 건물은 현재까지 벤치마킹이 가능한 것
@@ -51,7 +52,7 @@ public class Main {
 				}
 			}
 			
-			answer += stack.size();
+			answer += stack.size(); //스택 사이즈를 더함으로써 벤치마킹 가능한 개수를 더해준다
 			stack.push(height);
 		}
 		
