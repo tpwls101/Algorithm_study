@@ -6,6 +6,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_16235_나무재테크>
+ * 주의사항!!
+ * list에서 죽은 나무를 제거할 때, 뒤에서부터 해야 한다.
+ * 앞에서부터 제거하면 for문 돌리면서 i번째 인덱스의 값이 바뀌어 차례대로 제거할 수 없다.
+ * 
+ * 다른 풀이를 보니 Collections.sort를 매년 사용하면 시간초과 난다고 하는데 내 풀이는 괜찮았다.
+ * 이유는..?
+ * 생각해봤는데 다른 사람들의 풀이에서는 모든 나무를 리스트에 담아 정렬하지만,
+ * 나는 한 칸의 나무만 정렬하기 때문에 괜찮은 것 같다.
+ * Collections.sort()의 시간복잡도 : O(NlogN)
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N; // 땅의 크기
