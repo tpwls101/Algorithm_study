@@ -27,10 +27,8 @@ public class Main {
 	static int M; // 놓을 수 있는 바이러스의 개수	
 	static int[][] arr;
 	static int emptyCnt = 0; // 빈 칸의 개수
-//	static int wallCnt = 0; // 벽의 개수
 	static List<Node> virus = new ArrayList<>(); // 바이러스의 위치를 저장
 	static Node[] selected; // 활성화하기 위해 선택된 바이러스
-//	static boolean[] visited;
 	static int answer = Integer.MAX_VALUE; // 모든 칸에 바이러스를 퍼뜨리는데 걸리는 최소 시간
 	
 	static int[] dx = { 0, 1, 0, -1 };
@@ -64,13 +62,10 @@ public class Main {
         		arr[i][j] = Integer.parseInt(st.nextToken());
         		
         		if(arr[i][j] == 0) emptyCnt++;
-//        		if(arr[i][j] == 1) wallCnt++;
         		if(arr[i][j] == 2) virus.add(new Node(i, j, 0));
         	}
         }
         
-//        visited = new boolean[virus.size()];
-		
         // 바이러스를 퍼뜨릴 빈 칸이 없으면 바로 0 출력
         if(emptyCnt == 0) {
         	System.out.println(0);
@@ -84,15 +79,6 @@ public class Main {
             	System.out.println(answer);
             }
         }
-        
-        
-        
-        // 바이러스를 어떻게 놓아도 모든 칸에 퍼뜨릴 수 없으면 -1 출력
-//        if(answer == Integer.MAX_VALUE) {
-//        	System.out.println(-1);
-//        } else {
-//        	System.out.println(answer);
-//        }
 	}
 	
 	static void comb(int start, int cnt) {
@@ -102,11 +88,8 @@ public class Main {
 		}
 		
 		for(int i=start; i<virus.size(); i++) {
-//			if(visited[i]) continue;
 			selected[cnt] = virus.get(i);
-//			visited[i] = true;
 			comb(i+1, cnt+1);
-//			visited[i] = false;
 		}
 	}
 	
@@ -115,7 +98,6 @@ public class Main {
 		boolean[][] visited = new boolean[N][N];
 		
 		int empty = emptyCnt;
-//		int time = 0; // 모든 칸에 바이러스를 퍼뜨리는데 걸리는 시간
 		
 		for(int i=0; i<selected.length; i++) {
 			queue.add(selected[i]);
@@ -128,14 +110,6 @@ public class Main {
 			for(int i=0; i<4; i++) {
 				int nx = current.x + dx[i];
 				int ny = current.y + dy[i];
-				
-//				if(nx >= 0 && nx < N && ny >= 0 && ny < N) {
-//					if((arr[nx][ny] == 0 || arr[nx][ny] == 2) && !visited[nx][ny]) {
-//						queue.add(new Node(nx, ny, current.time+1));
-//						visited[nx][ny] = true;
-//						time = Math.max(time, current.time+1);
-//					} 
-//				}
 				
 				if(nx >= 0 && nx < N && ny >= 0 && ny < N) {
 					if(arr[nx][ny] == 0 && !visited[nx][ny]) {
@@ -155,23 +129,6 @@ public class Main {
 				}
 			}
 		}
-		
-		// 단 모든 빈 칸에 바이러스를 퍼뜨릴 수 있어야 함
-//		int count = 0;
-//		for(int i=0; i<N; i++) {
-//			for(int j=0; j<N; j++) {
-//				if(visited[i][j]) count++;
-//			}
-//		}
-//		System.out.println("count = " + count);
-		
-		// 방문이 참이 것의 개수가 (N^2 - 벽의 개수 - 비활성화 바이러스의 개수)와 같으면 모두 방문한 것임
-//		if(count == (N*N - wallCnt - (virus.size() - M))) {
-//		if(count == (N*N - wallCnt)) {
-//			// 모든 칸을 방문했으면 걸리는 시간 갱신
-//			answer = Math.min(answer, time);
-//			System.out.println("answer = " + answer);
-//		}
 	}
 
 }
