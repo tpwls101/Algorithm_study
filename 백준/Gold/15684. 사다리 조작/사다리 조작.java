@@ -3,6 +3,36 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_15684_사다리조작>
+ * 1. 사다리 정보를 어떻게 표현할 것인가?
+ * 		- 2차원 배열 사용
+ * 		- 연결된 사다리가 없다면 0
+ * 		- i번째 사다리가 우측과 연결되어 있다면 1
+ * 		- i번째 사다리가 좌측과 연결되어 있다면 2
+ * 		- 이렇게 하면 HxN 2차원 배열로 사다리의 연결 상태를 표현할 수 있음
+ * 2. 추가 사다리를 어떻게 둘 것인지?
+ * 		- 추가할 사다리가 3개를 초과하면 -1 을 출력해야 함
+ *		- 따라서 추가할 사다리가 0, 1, 2, 3일 때 모든 경우의 수를 탐색해 자기 자신의 번호로 나오는지 확인해주면 됨
+ *		- 추가한 사다리가 0~3일 때를 DFS 종료조건으로 사용
+ *
+ * <시간 복잡도>
+ * 추가 사다리를 놓을 수 있는 총 위치의 수 = P = (N-1)*H
+ * 사다리를 놓는 경우의 수는?
+ * 추가할 사다리가 0일 때 -> 1
+ * 추가할 사다리가 1일 때 -> P = N*H
+ * 추가할 사다리가 2일 때 -> pC2 = P*(P-1) / 2! = P^2 = (N*H)^2
+ * 추가할 사다리가 3일 때 -> pC3 = P*(P-1)*(P-2) / 3! = P^3 = (N*H)^3
+ * 
+ * 각 경우의 수마다 자기 자신의 번호로 나오는지 확인해야 함 -> O(N*H)
+ * 따라서 O((N*H)^4)의 시간복잡도를 가짐
+ * 단, 이는 최악의 경우일 때고 실제 값으로 계산을 해보면 10억 이내로 2초 안에 연산 수행이 가능하다.
+ * (1초에 1억번의 연산을 수행하는데 가지치기를 하니 가능한가보다. 시간 복잡도는 아직도 이해가 어렵다ㅜㅜ)
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N; // 세로선의 개수
@@ -30,23 +60,11 @@ public class Main {
         	arr[pos][ladderNum+1] = 2;
         }
         
-        // 확인
-//        for(int i=0; i<H+1; i++) {
-//        	for(int j=0; j<N+1; j++) {
-//        		System.out.print(arr[i][j] + " ");
-//        	}
-//        	System.out.println();
-//        }
-//        System.out.println();
-        
         // 사다리를 0~3개까지 놓을 수 있다
         for(int i=0; i<=3; i++) {
-//        	System.out.println("사다리 " + i + "개 설치");
         	answer = i;
         	dfs(1, 1, 0);
         	if(finish) break;
-//        	System.out.println("사다리 " + i + "개 설치할 때 확인 완료");
-//        	System.out.println();
         }
 		
         System.out.println(finish ? answer : -1);
@@ -59,14 +77,6 @@ public class Main {
 		
 		// 사다리가 0~3개만큼 설치되면 사다리가 자기 자신의 번호로 나오는지 확인하기
 		if(cnt == answer) {
-//			System.out.println("확인");
-//			for(int i=0; i<H+1; i++) {
-//	        	for(int j=0; j<N+1; j++) {
-//	        		System.out.print(arr[i][j] + " ");
-//	        	}
-//	        	System.out.println();
-//	        }
-			
 			if(check()) finish = true;
 			return;
 		}
@@ -99,12 +109,10 @@ public class Main {
 				else if(arr[x][y] == 2) y--;
 				x++;
 			}
-//			System.out.println(i + "번 사다리는 " + y + "로 나옴");
 			
 			// 하나라도 자기 번호로 나오지 않으면 false 리턴
 			if(y != i) return false;
 		}
-//		System.out.println();
 		
 		return true;
 	}
