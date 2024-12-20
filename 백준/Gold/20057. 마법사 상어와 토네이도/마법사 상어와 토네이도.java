@@ -3,6 +3,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_20057_마법사상어와토네이도>
+ * 1. 토네이도 회전 방향대로 구현하기
+ * 2. 모래 흩날리기
+ * 
+ * <Tip>
+ * 해당 위치의 비율은 2차원 배열로 미리 선언해두는게 편하다.
+ * 
+ * <주의사항 = 놓친 포인트>
+ * 알파 처리에 주의할 것
+ * 알파로 이동하는 모래의 양은 비율이 적혀있는 칸으로 이동하지 않은 남은 모래의 양
+ * 격자 안이든 밖이든 퍼진 모래는 제외하고 알파를 구해야 한다
+ * 즉, 격자 밖으로 나간 모래의 양도 제외해야 한다!!! (놓친 포인트)
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N; // 격자의 크기
@@ -25,10 +43,6 @@ public class Main {
 			   			  { 2, 1, 1, 1, 0, -1, -1, -1, -2, 0 }}; // 상
 	static int[] rate = { 2, 10, 7, 1, 5, 10, 7, 1, 2 };
 	
-	// 하우상좌
-//	static int[] dx = { 1, 0, -1, 0 };
-//	static int[] dy = { 0, 1, 0, -1 };
-	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = null;
@@ -50,14 +64,11 @@ public class Main {
         int dir = 0;
         visited[x][y] = true;
         
-//        while(x != 0 || y != 0) {
         while(true) {
         	if(x == 0 && y ==0) break;
         	
-//        	System.out.println("방향 : " + dir);
         	int nx = x + dx[dir];
         	int ny = y + dy[dir];
-//        	System.out.println("nx=" + nx + ", ny=" + ny);
         	
         	// 다음 방향으로 꺾을 수 있으면 꺾고, 그게 아니라면 꺾을 수 있을 때까지 같은 방향으로 직진
         	if(!visited[nx][ny]) {
@@ -67,25 +78,8 @@ public class Main {
         		x = nx;
         		y = ny;
         	} else {
-        		dir = (dir-1+4) % 4;
+        		dir = (dir-1+4) % 4; // 다시 원래 방향으로 복구
         	}
-        	
-//        	for(int i=0; i<N; i++) {
-//        		for(int j=0; j<N; j++) {
-//        			System.out.print((visited[i][j] ? 1 : 0) + " ");
-//        		}
-//        		System.out.println();
-//        	}
-//        	System.out.println();
-        	
-//        	for(int i=0; i<N; i++) {
-//        		for(int j=0; j<N; j++) {
-//        			System.out.print(sand[i][j] + " ");
-//        		}
-//        		System.out.println();
-//        	}
-//        	System.out.println();
-        	
         }
         
         System.out.println(answer);
