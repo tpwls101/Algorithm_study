@@ -85,20 +85,13 @@ public class Main {
         		if(finish) break;
         		
         		Node cur = position.get(i); // i번째 말의 현재 위치
-//        		System.out.println("현재 x좌표 = " + cur.x + ", 현재 y좌표 = " + cur.y);
         		
         		Chessman current = null; // 현재 체스말
         		int index = 0; // 현재 말의 인덱스
         		
-//        		System.out.println("현재 좌표의 크기 : " + chessman[cur.x][cur.y].size());
-//        		for(Chessman cm : chessman[cur.x][cur.y]) {
-//        			System.out.println("체스말 번호 : " + cm.num);
-//        		}
-        		
         		for(int j=0; j<chessman[cur.x][cur.y].size(); j++) {
         			Chessman tmp = chessman[cur.x][cur.y].get(j);
         			if(tmp.num == i) {
-//        				System.out.println("@@@@@");
         				current = tmp;
         				index = j; // j번째 이후의 체스말은 함께 이동
         			}
@@ -107,60 +100,32 @@ public class Main {
         		int nx = cur.x + dx[current.dir];
         		int ny = cur.y + dy[current.dir];
         		
-//        		System.out.println("다음칸 색깔 : " + chess[nx][ny]);
-        		
         		if(isRange(nx, ny)) {
         			if(chess[nx][ny] == 0) { // 흰 칸
         				white(index, cur.x, cur.y, nx, ny);
-//        				System.out.println("하얀 칸으로 이동 완료");
         			} else if(chess[nx][ny] == 1) { // 빨간 칸
-//        				System.out.println("빨간칸");
         				red(index, cur.x, cur.y, nx, ny);
-//        				System.out.println("빨간 칸으로 이동 완료");
         			} else { // 파란 칸
         				blue(index, cur.x, cur.y);
-//        				System.out.println("다음 칸이 파란 칸인 관계로 반대 방향으로 이동 또는 제자리에 유지");
         			}
         		} else {
         			blue(index, cur.x, cur.y);
-//        			System.out.println("다음 칸이 범위를 벗어나므로 반대 방향으로 이동 또는 제자리에 유지");
         		}
-//        		System.out.println();
         	}
-        	
-//        	System.out.println("=== K개의 말 이동 후 확인 ===");
-//        	System.out.println(chessman[3][0].get(0).num + "번 체스말의 방향 : " + chessman[3][0].get(0).dir);
-        	
-//        	System.out.println("count = " + count);
         }
         
         System.out.println(count > 1000 ? -1 : count);
 	}
 	
 	static void white(int index, int x, int y, int nx, int ny) {
-//		System.out.println("=== white 실행 ===");
-//		System.out.println("index = " + index);
-//		System.out.println("현재 x좌표 = " + cur.x + ", 현재 y좌표 = " + cur.y);
-//		System.out.println("nx = " + nx + ", ny = " + ny);
-//		System.out.println("현재 좌표의 size = " + chessman[cur.x][cur.y].size());
-		
 		List<Chessman> list = new ArrayList<>();
 		
 		// 다음 칸에 체스말 추가
 		int size = chessman[x][y].size();
 		for(int i=index; i<size; i++) {
-//			System.out.println("i = " + i);
-//			System.out.println("현재 x좌표 = " + cur.x + ", 현재 y좌표 = " + cur.y);
-//			System.out.println("현재 좌표의 size = " + chessman[cur.x][cur.y].size());
-			
 			Chessman tmp = chessman[x][y].get(i);
-//			System.out.println("체스말 번호 = " + tmp.num);
 			chessman[nx][ny].add(tmp);
-			
 			list.add(tmp);
-			// 위치 갱신
-//			position.get(tmp.num).x = nx;
-//			position.get(tmp.num).y = ny;
 		}
 		
 		// 기존 칸의 체스말 제거
@@ -175,29 +140,19 @@ public class Main {
 		}
 		
 		// 말이 4개 이상 쌓이면 게임 종료
-//		System.out.println("check");
 		check(nx, ny);
 	}
 	
 	static void red(int index, int x, int y, int nx, int ny) {
-//		System.out.println("=== red 실행 ===");
-//		System.out.println("index = " + index);
-		
 		List<Chessman> list = new ArrayList<>();
 		
 		// 다음 칸에 체스말 거꾸로 추가 + 기존 칸의 체스말 제거
 		int size = chessman[x][y].size();
 		for(int j=size-1; j>=index; j--) {
 			Chessman tmp = chessman[x][y].get(j);
-//			System.out.println("체스말 번호 : " + tmp.num);
 			chessman[nx][ny].add(tmp);
-//			System.out.println(tmp.num + "번 체스말 다음 칸으로 이동 완료");
 			list.add(tmp);
 			chessman[x][y].remove(j);
-//			System.out.println("기존 위치의 체스말 제거");
-			// 위치 갱신
-//			position.get(tmp.num).x = nx;
-//			position.get(tmp.num).y = ny;
 		}
 		
 		// 위치 갱신
@@ -211,14 +166,8 @@ public class Main {
 	}
 	
 	static void blue(int index, int x, int y) {
-//		System.out.println("index = " + index);
-//		System.out.println("현재 x좌표 = " + x + ", 현재 y좌표 = " + y);
-		
 		int size = chessman[x][y].size();
-//		System.out.println(size);
-		
 		for(int j=index; j<size; j++) {
-//			System.out.println("j = " + j);
 			Chessman tmp = chessman[x][y].get(j);
 			
 			// 이동 방향 반대로 바꾸기
@@ -227,17 +176,13 @@ public class Main {
 			} else {
 				tmp.dir -= 1;
 			}
-//			System.out.println("방향 = " + tmp.dir);
 			
 			int nx = x + dx[tmp.dir];
 			int ny = y + dy[tmp.dir];
-//			System.out.println("nx = " + nx + ", ny = " + ny);
 			
 			// 범위를 벗어나거나 파란색이면 이동하지 않는다
 			if(!isRange(nx, ny) || chess[nx][ny] == 2) {
-//				System.out.println("범위를 벗어나거나 파란색이면 이동하지 않는다");
-//				continue;
-				break;
+				break; // 주의!! -> 처음에 continue로 써서 틀림 ㅜㅜ i번째 말이 이동할 수 없으면 그 다음은 볼 필요도 없음
 			}
 			
 			// 이동할 수 있다면 이동
@@ -253,13 +198,6 @@ public class Main {
 	
 	// 말이 4개 이상 쌓였는지 확인
 	static void check(int x, int y) {
-//		System.out.println("=== check 함수 ===");
-//		System.out.println("현재 칸에 있는 체스말 번호 확인");
-//		for(int i=0; i<chessman[x][y].size(); i++) {
-//			System.out.print(chessman[x][y].get(i).num + " ");
-//		}
-//		System.out.println();
-		
 		if(chessman[x][y].size() >= 4) {
 			finish = true;
 		}
