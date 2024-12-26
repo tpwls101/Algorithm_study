@@ -7,6 +7,19 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_17837_새로운게임2>
+ * 헤맸던 부분
+ * 1. white, red 등 함수 호출 시 call by value, call by reference 문제
+ * 		- Node 타입의 변수 cur을 넘겨줘서 위치를 갱신해주니 변경된 값을 사용해 자꾸 틀렸다.
+ * 		- 따라서 Node 타입 변수 대신 x와 y 값을 int형으로 그냥 넘겨줘버렸고, 말의 위치 갱신도 말 이동/제거 후에 한번에 처리했다.
+ * 2. 다음 칸이 파란색일 때 방향을 바꾸고 이동할 수 없다면 i번째 말 위에 있는 다른 말은 볼 필요가 없다. -> break
+ * 3. 다음 칸이 파란색일 때 방향을 바꾸고 이동할 수 있다면 white나 red 함수를 호출해 처리하는데, 이 때 해당 말의 윗 부분도 모두 이동 처리되므로 더 이상 for문을 돌면 안되고 break 처리 필요 (안그러면 index 에러)
+ * 
+ * @author YooSejin
+ * 
+ */
+
 public class Main {
 	
 	static int N; // 체스판의 크기
