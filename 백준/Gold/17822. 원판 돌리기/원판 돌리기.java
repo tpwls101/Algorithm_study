@@ -5,7 +5,13 @@ import java.util.StringTokenizer;
 
 /**
  * <BJ_17822_원판돌리기>
- * Tip) 원판의 모양대로 배열을 생성하지 않아도 톱니바퀴 문제처럼 그냥 배열에 저장하면 된다.
+ * <Tip>
+ * 원판의 모양대로 배열을 생성하지 않아도 톱니바퀴 문제처럼 그냥 배열에 저장하면 된다.
+ * k칸 이동할 때에는 %(나머지)를 이용하면 좋다.
+ * 
+ * <주의할 점>
+ * 평균을 실수형으로 사용해야 한다.
+ * 정수형으로 내림 처리되면 그 수보다 작은게 아니라 작거나 같은 이런식으로 처리해야 정확하다.
  * 
  * @author YooSejin
  *
@@ -17,7 +23,6 @@ public class Main {
 	static int M; // 원판에 적힌 정수의 개수
 	static int T; // 원판 회전 횟수
 	static int[][] arr;
-	static int remain; // 원판에 남아있는 수의 개수
 	static int answer = 0; // 원판에 적힌 수의 합
 	
 	public static void main(String[] args) throws IOException {
@@ -29,7 +34,6 @@ public class Main {
         T = Integer.parseInt(st.nextToken());
         
         arr = new int[N+1][M]; // x번 원판 번호의 배수인 원판을 회전시켜야 하므로 계산을 위해 N+1 사용
-        remain = N*M;
         
         for(int i=1; i<=N; i++) {
         	st = new StringTokenizer(br.readLine());
@@ -50,18 +54,8 @@ public class Main {
         		rotate(i, d, k);
         	}
         	
-        	// 확인
-//        	for(int i=1; i<=N; i++) {
-//            	for(int j=0; j<M; j++) {
-//            		System.out.print(arr[i][j] + " ");
-//            	}
-//            	System.out.println();
-//            }
-        	
-        	// 원판에 수가 남아있으면 인접하면서 수가 같은 것 찾아 지우기
-//        	if(remain > 0) {
-            	erase();
-//        	}
+        	// 인접하면서 수가 같은 것 찾아 지우기
+            erase();
         }
         
         // 원판에 적힌 수의 합 구하기
@@ -147,7 +141,6 @@ public class Main {
 			}
 			
 			double avg = (double)sum / cnt;
-			//System.out.println("평균 : " + avg);
 			
 			for(int i=1; i<=N; i++) {
 				for(int j=0; j<M; j++) {
