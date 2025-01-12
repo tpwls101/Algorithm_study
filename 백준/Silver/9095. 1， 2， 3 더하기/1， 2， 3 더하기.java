@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * <BJ_123더하기> - DP 문제
+ * <BJ_9095_123더하기> - DP 문제
  * 1, 2, 3을 만드는 경우의 수는 먼저 지정해둠
  * 4부터는 4를 만들기 위해서는 1+3, 2+2, 3+1
  * 5를 만들기 위해서는 1+4, 2+3, 3+2
