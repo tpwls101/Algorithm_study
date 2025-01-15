@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * <BJ_13549_숨바꼭질3>
+ * <BJ_13549_숨바꼭질3> - ArrayDeque를 사용한 방식
  * 최단거리 문제! -> BFS
  * 가중치가 0 또는 1 -> 0-1 BFS
  * 
@@ -66,13 +66,10 @@ public class Main {
 		
 		while(!queue.isEmpty()) {
 			Node current = queue.poll();
-//			System.out.println("현재 node의 위치 : " + current.pos);
-//			System.out.println("현재 node까지 걸린 시간 : " + current.time);
-//			System.out.println();
 			
 			if(current.pos == K) {
 //				answer = Math.min(answer, current.time);
-				answer = current.time;
+				answer = current.time; // deque를 사용하면 가중치가 작은 경우를 앞으로 삽입하기 때문에 갱신 안해도 바로 정답이 나옴
 				break;
 			}
 			
