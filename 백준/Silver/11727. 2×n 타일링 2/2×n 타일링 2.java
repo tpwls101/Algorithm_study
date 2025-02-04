@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
- * <BJ_11726_2xn타일링>
+ * <BJ_11727_2xn타일링2>
  * n=i-1일 때 가능한 경우에 세로 타일을 오른쪽 맨 끝에 추가하는 경우와
  * n=i-2일 때 가능한 경우에 가로 타일 두개, 또는 정사각형 타일을 오른쪽 맨 끝에 두는 경우로 나뉘어진다.
  * 따라서 dp[i] = dp[i-1] + dp[i-2]*2 점화식이 나온다.
