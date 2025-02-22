@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * <더 간단한 풀이>
  * 고정석을 기준으로 구간을 나눠 가능한 경우의 수를 곱해주면 된다.
- * dp[0] = 1로 선언해야 한다.
+ * dp[0] = 1로 초기화해야 한다.
  * 반례 주의 -> 2 1 2 -> 그러면 answer *= dp[N - beforeSeat]; 을 실행할 때 answer에 dp[0](0)을 곱해 답이 1이 아니라 0이 된다.
  * 
  * @author YooSejin
