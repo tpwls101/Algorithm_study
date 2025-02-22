@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <BJ_2302_극장좌석>
+ * <BJ_2302_극장좌석> - 내가 푼 풀이
  * 항상 N이 1일 때를 주의하자!!!
  * 아니면 애초에 dp 크기를 전체 범위만큼 선언해주기!!
  * 
