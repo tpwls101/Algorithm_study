@@ -2,6 +2,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+첫 풀이. 시간이 너무 오래걸림.
+메모리 : 15076KB
+시간 : 2104ms
+*/
+
 public class Main {
 	
 	static int N;
