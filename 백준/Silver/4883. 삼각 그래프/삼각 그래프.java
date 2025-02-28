@@ -19,7 +19,7 @@ public class Main {
 	
 	static int N; // 그래프의 행의 개수
 	static int[][] cost;
-	static long[][] dp;
+	static int[][] dp;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,7 +34,7 @@ public class Main {
 			if(N == 0) break;
 			
 			cost = new int[N+1][4];
-			dp = new long[N+1][5];
+			dp = new int[N+1][5];
 			
 			for(int i=1; i<=N; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -52,7 +52,7 @@ public class Main {
 			
 			for(int i=2; i<=N; i++) {
 				for(int j=1; j<=3; j++) {
-					long min = Math.min(Math.min(Math.min(dp[i-1][j+1], dp[i-1][j]), dp[i-1][j-1]), dp[i][j-1]);
+					int min = Math.min(Math.min(Math.min(dp[i-1][j+1], dp[i-1][j]), dp[i-1][j-1]), dp[i][j-1]);
 					dp[i][j] = min + cost[i][j];
 				}
 			}
