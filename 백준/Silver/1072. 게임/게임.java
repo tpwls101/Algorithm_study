@@ -44,19 +44,19 @@ public class Main {
 			return;
 		}
 		
-		int left = 0;
+		int left = 1;
 		int right = 1000000000;
 		int answer = -1;
 		
 		while(left <= right) {
 			int mid = (left + right) / 2; // 추가 게임 횟수
-			long tmp = (win + mid) * 100 / (total + mid); // 추가로 게임을 했을 때 승률
+			long newRate = (win + mid) * 100 / (total + mid); // 추가로 게임을 했을 때 승률
 			
-			if(percent >= tmp) {
-				answer = mid + 1;
-				left = mid + 1; // 임시 승률이 더 낮으면 게임 횟수 늘림
-			} else {
+			if(percent < newRate) {
 				right = mid - 1; // 임시 승률이 더 높으면 최소가 될 때까지 게임 횟수 줄임
+				answer = mid;
+			} else {
+				left = mid + 1; // 임시 승률이 더 낮거나 같으면 게임 횟수 늘림
 			}
 		}
 		
