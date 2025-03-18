@@ -5,6 +5,17 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_2468_안전영역>
+ * 아무 지역도 물에 잠기지 않을 수 있다는 것이 포인트!! (비가 오지 않을 수 있다!)
+ * 비가 1부터 오면 answer=1로 초기화 해주어야 한다.
+ * 왜냐하면 비가 오지 않을 경우 안전영역은 1개이기 때문이다.
+ * 아니면 for문 돌릴 때 rain을 0부터 해주어 answer 값을 1로 갱신하는 방법도 있다.
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N;
@@ -82,7 +93,6 @@ public class Main {
 			}
 		}
 		
-//		System.out.println("비가 높이 " + rain + "만큼 왔을 때 안전영역의 갯수 = " + count);
 		return count;
 	}
 	
