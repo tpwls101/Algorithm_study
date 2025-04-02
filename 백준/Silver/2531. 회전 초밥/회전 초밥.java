@@ -5,6 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_2531_회전초밥>
+ * 처음엔 회전 벨트라 당황할 수 있지만 나는 값을 저장할 배열의 길이를 늘려주었음
+ * 2*N을 사용할까 했지만 공간을 많이 잡아먹을 수 있으니 N+k-1 만큼 크기를 지정해줬음
+ * 하지만 N만큼만 사용하고 나머지 연산을 사용해 end로 사용해도 됨!!
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 	
 	static int N; // 회전 초밥 벨트에 놓인 접시의 수
