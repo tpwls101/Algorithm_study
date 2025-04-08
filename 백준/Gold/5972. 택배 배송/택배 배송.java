@@ -83,7 +83,7 @@ public class Main {
 			
 			// 가지치기
 			// 큐에서 뽑아 가져온 현재까지 누적된 비용이 최단 비용보다 크다면 더 진행해도 최소 비용으로 갱신할 수 없다.
-			if(cost > distance[node]) continue;
+			// if(cost > distance[node]) continue;
 			
 			for(int i=0; i<graph.get(node).size(); i++) {
 				Node next = graph.get(node).get(i); // 현재 노드에서 갈 수 있는 다음 노드
