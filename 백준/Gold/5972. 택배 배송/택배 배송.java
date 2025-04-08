@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
  * 3. 시작점에서 갈 수 있는 노드를 돌리며 현재 누적된 비용에서 가는데 드는 비용을 더한 값이 최소 비용보다 더 작으면 새롭게 갱신
  * 		- 최소 비용을 갱신하면 우선순위 큐에 추가
  * 4. 우선순위 큐에서 꺼낸 노드의 누적 비용이 최소 비용보다 크다면 어차피 최소 비용으로 갱신할 수 없음 -> 따라서 가지치기(continue)
+ * 		- 이 부분은 이 문제에서 안해도 시간초과 걸리지 않음 (선택!!)
  * 
  * @author YooSejin
  *
@@ -81,9 +82,9 @@ public class Main {
 			int node = current.num;
 			int cost = current.cost;
 			
-			// 가지치기
+			// 가지치기 (이 문제에서는 선택사항. 안해도 시간초과 걸리지 않는다.)
 			// 큐에서 뽑아 가져온 현재까지 누적된 비용이 최단 비용보다 크다면 더 진행해도 최소 비용으로 갱신할 수 없다.
-			// if(cost > distance[node]) continue;
+			if(cost > distance[node]) continue;
 			
 			for(int i=0; i<graph.get(node).size(); i++) {
 				Node next = graph.get(node).get(i); // 현재 노드에서 갈 수 있는 다음 노드
