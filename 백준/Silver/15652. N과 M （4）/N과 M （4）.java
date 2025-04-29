@@ -18,6 +18,7 @@ public class Main {
 	static int N;
 	static int M;
 	static int[] selected;
+	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,14 +30,16 @@ public class Main {
         selected = new int[M];
         
         comb(0, 1);
+        
+        System.out.println(sb);
 	}
 	
 	static void comb(int cnt, int start) {
 		if(cnt == M) {
 			for(int num : selected) {
-				System.out.print(num + " ");
+				sb.append(num + " ");
 			}
-			System.out.println();
+			sb.append("\n");
 			return;
 		}
 		
