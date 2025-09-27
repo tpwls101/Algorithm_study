@@ -7,6 +7,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * <BJ_1092_배>
+ * 크레인의 무게 제한과 박스의 무게를 내림차순 정렬해 무거운 것부터 이동시켜 제거하면서 최소 시간을 구하면 된다.
+ * 현재 선택이 최적의 해를 만드므로 그리디 문제이다.
+ * 
+ * 먼저 박스를 다 옮기지 못하는 경우를 처리해준다.
+ * 그렇지 않으면 while문을 계속 돌아 시간초과 난다.
+ * 
+ * @author YooSejin
+ *
+ */
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
