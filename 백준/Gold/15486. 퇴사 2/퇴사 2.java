@@ -4,15 +4,15 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * <BJ_15486_퇴사2>
- * 상담이 끝난 후 돈을 받는다!
- * 1일차, 2일차, ... , N일차 차례대로 상담을 한다고 가정했을 때 Ti일 후 수입이 생긴다.
- * 따라서 dp[N+Ti] = Math.max(dp[N+Ti], dp[N] + Pi)
- * -> dp 배열에 수입 저장하고 최대로 계속 갱신하기!
+ * <BJ_15486_퇴사2> - DP
+ * 이 문제는 입력값의 범위가 작다면 DFS로도 풀 수 있다.
+ * 하지만 주어진 입력값이 최대 150만까지이므로 DFS로 풀면 시간초과가 나기 때문에 DP로 풀어야 한다.
  * 
- * 단, 주의할 점 !
- * 마지막 날에도 일을 할 수 있으니(T가 1인 경우)
- * dp[N+1]까지 만들어야 한다.
+ * dp[i] : i일까지의 최대 수익 저장
+ * 
+ * 처음에는 이중 for문을 돌려 dp[i]의 최댓값을 갱신했는데 입력값의 범위 때문에 시간초과가 났다.
+ * 따라서 그 방식이 아니라 i번째 날 상담을 진행한 후 상담이 끝난 다음날의 최댓값을 갱신시켜 준다.
+ * 최대 수익에 금액을 더한 것과 비교해 갱신하기 때문에 마지막 dp값을 출력하면 최대 수익이다.
  * 
  * @author YooSejin
  *
@@ -20,48 +20,35 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N; // 퇴사 전까지 남은 날
-	static int[] time; // 상담 시간을 저장할 배열
-	static int[] price; // 금액을 저장할 배열	
-	static int[] dp; // N일차에 생기는 최대 이익을 갱신해 저장
-	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = null;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = null;
+        
+        int N = Integer.parseInt(br.readLine()); // 상담은 N일 동안 가능
 		
-		N = Integer.parseInt(br.readLine());
+        int[][] arr = new int[N+2][2]; // 상담을 완료하는데 걸리는 기간과 받는 금액 저장
+        
+        for(int i=1; i<=N; i++) {
+        	st = new StringTokenizer(br.readLine());
+        	arr[i][0] = Integer.parseInt(st.nextToken());
+        	arr[i][1] = Integer.parseInt(st.nextToken());
+        }
 		
-		time = new int[N+2];
-		price = new int[N+2];
-		dp = new int[N+2]; // 마지막 날 Ti가 1이여서 일을 해 담날 수입이 생기는 것을 고려 (0번은 사용)
-		
-		for(int i=1; i<=N; i++) {
-			st = new StringTokenizer(br.readLine());
-			time[i] = Integer.parseInt(st.nextToken());
-			price[i] = Integer.parseInt(st.nextToken());
-		}
-		
-		int max = 0; // i일까지의 최대 수익
-		
-		for(int i=1; i<=N+1; i++) {
-			// i일까지의 최대 수익 갱신
-			if(dp[i] > max) {
-//				System.out.println(i + "일 : dp[i]=" + dp[i] + " / max=" + max);
-				max = dp[i];
-//				System.out.println("max = " + max);
-			}
-			
-			int day = i + time[i]; // i일차에 상담을 하고 수익이 생기는 날
-			if(day > N+1) continue;
-//			dp[day] = Math.max(dp[day], dp[i] + price[i]); // dp[i]가 아니라 i일까지의 최대 수익에 수입을 더해야 함!
-			dp[day] = Math.max(dp[day], max + price[i]);
-		}
-		
-//		for(int i=0; i<dp.length; i++) {
-//			System.out.print(dp[i] + " ");
-//		}
-		
-		System.out.println(dp[N+1]);
+        // dp[i] : i일까지의 최대 수익 저장
+        // 마지막 날까지 상담을 하는 경우 그 다음날 수익을 얻기 때문에 크기를 +1 해준다.
+        int[] dp = new int[N+2];
+        
+        int max = -1;
+        
+        for(int i=1; i<=N+1; i++) {
+        	if(max < dp[i]) max = dp[i]; // 최대 수익 갱신
+        	
+        	int next = i + arr[i][0]; // 수익이 발생하는 날
+        	if(next > N+1) continue; // 수익 정산받는 날이 N+1을 넘어가면 안됨
+        	dp[next] = Math.max(dp[next], max + arr[i][1]); // dp[i]+금액이 아니라 i번째 날까지의 최대 수익(max)에 금액을 더한 값과 비교해야 한다.
+        }
+        
+        System.out.println(dp[N+1]);
 	}
-	
+
 }
