@@ -6,6 +6,10 @@ import java.util.StringTokenizer;
 /**
  * <BJ_21921_블로그>
  * X일로 길이가 고정되어 있으므로 슬라이딩 윈도우 문제임을 알 수 있다.
+ * 처음에는 기간의 개수를 구하기 위해 각 방문자 수의 합을 배열에 따로 저장해 한 번 더 for문을 돌려 개수를 셌었는데
+ * 기간의 개수를 1로 초기화시키면 그럴 필요가 없다.
+ * 새롭게 max값이 갱신되면 처음으로 최대 방문자 수가 나온 것이므로 기간의 개수를 1로 초기화하고
+ * 이미 max값과 같은 방문자 수의 합이 나오면 기간을 하나 더 카운트해주면 된다.
  * 
  * @author YooSejin
  *
@@ -27,31 +31,30 @@ public class Main {
         	arr[i] = Integer.parseInt(st.nextToken());
         }
         
-        int sum = 0;
+        int sum = 0; // 방문자 수의 합
         int max = 0; // 최대 방문자 수
-        int[] visitCnt = new int[N-X+1]; // 방문자 수 저장
+        int cnt = 1; // 기간의 개수
         
         // 초기화
         for(int i=0; i<X; i++) {
         	sum += arr[i];
         }
         max = sum;
-        visitCnt[0] = sum;
         
         for(int i=0; i<N-X; i++) {
         	sum -= arr[i];
         	sum += arr[i+X];
-        	visitCnt[i+1] = sum;
-        	max = Math.max(max, sum);
-        }
-        
-        int cnt = 0; // 기간의 개수
-        for(int i=0; i<N-X+1; i++) {
-        	if(visitCnt[i] == max) {
+        	
+        	if(sum == max) { // 최대 방문자 수가 여러 기간 동안 있는 경우
         		cnt++;
         	}
+        	
+        	if(sum > max) {
+        		max = sum;
+        		cnt = 1;
+        	}
         }
-		
+        
         System.out.println(max == 0 ? "SAD" : max + "\n" + cnt);
 	}
 
