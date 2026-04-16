@@ -48,8 +48,16 @@ class Solution {
                 }
             }
             
-            Collections.sort(songList, (o1, o2) -> o2.play - o1.play);
+            // 많이 재생된 노래 순으로 정렬
+            // 재생 횟수가 같다면 고유 번호가 낮은 노래 순으로 정렬
+            Collections.sort(songList, (o1, o2) -> {
+                if(o1.play == o2.play) {
+                    return o1.index - o2.index;
+                }
+                return o2.play - o1.play;
+            });
             
+            // 장르별 노래가 하나밖에 없을 때 처리 주의
             if(songList.size() < 2) {
                 answerList.add(songList.get(0).index);
             } else {
