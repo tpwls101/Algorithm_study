@@ -40,7 +40,6 @@ class Solution {
         List<Integer> answerList = new ArrayList<>();
         
         for(TotalPlay tp : list) {
-            //System.out.println(tp.totalPlay);
             List<Song> songList = new ArrayList<>(); // 장르별 노래의 재생 횟수 저장
             
             for(int i=0; i<genres.length; i++) {
