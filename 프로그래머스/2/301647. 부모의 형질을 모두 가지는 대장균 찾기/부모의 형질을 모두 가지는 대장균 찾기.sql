@@ -1,0 +1,8 @@
+-- A & B = B 가 성립하면 A의 2진수 표현 속에 B의 2진수 비트가 포함되어 있다.
+-- 예를 들어 13(1101) & 5(0101) = 5(0101) -> 형질이 13인 8번 개체는 부모 개체인 6번의 형질을 모두 가지고 있다.
+
+SELECT A.ID, A.GENOTYPE, B.GENOTYPE AS PARENT_GENOTYPE
+FROM ECOLI_DATA A JOIN ECOLI_DATA B
+ON A.PARENT_ID = B.ID
+WHERE A.GENOTYPE & B.GENOTYPE = B.GENOTYPE
+ORDER BY A.ID;
